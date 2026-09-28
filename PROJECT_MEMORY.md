@@ -90,6 +90,15 @@ Do not start with online lookup, AI, barcode networking, or complex widgets befo
 - `DIAGNOSTICS.md` — app-specific diagnostic coverage map and implementation status
 - `TESTING.md` — app-specific guided-test catalog/status
 
+## Research findings — 2026-09-27
+- Barcode decoding can be done entirely on-device using Google ML Kit barcode scanning or Google Code Scanner; internet is not required merely to read UPC/EAN values.
+- Open Food Facts provides structured barcode lookup for food and related Open Food Facts product types. Read queries generally do not require authentication, but the app should identify itself with a User-Agent and respect rate limits.
+- UPCitemdb currently offers a no-signup free tier with limited daily/burst requests and broader UPC coverage; treat this as an optional fallback rather than a dependency.
+- Google Custom Search JSON API is closed to new customers and existing customers must transition by 2027, so it is not a suitable core product-lookup dependency.
+- A normal user-visible browser search can still be launched for queries such as "wheat bread Walmart"; automatic extraction from arbitrary Google or retailer pages should not be a core feature.
+- Google ML Kit GenAI/Gemini Nano exists for supported Android devices, but device support is limited and must be checked at runtime. Core categorization must work without it.
+- A robust lookup strategy is: local product catalog → structured public barcode provider(s) → manual/name-based web-search fallback → user confirmation → save corrected result locally.
+
 ## Checkpoint — Initial
 - Date: 2026-09-27
 - Status: PLANNED
@@ -99,6 +108,16 @@ Do not start with online lookup, AI, barcode networking, or complex widgets befo
 - Candidate artifact: none
 - Existing working source at risk: none; repository was empty
 - Exact next action: create the minimal Android project/data baseline after the user is ready to begin coding.
+
+## Checkpoint — Documentation initialized
+- Date: 2026-09-27
+- Status: PLANNED
+- Source code: still not started
+- Project-memory/roadmap/diagnostics/testing files: created
+- Online lookup/AI feasibility: researched at planning level
+- Last user-verified baseline: none
+- Latest candidate: none
+- Exact next action: design and implement the first minimal local Android baseline only when coding is authorized.
 
 ## Known risks / constraints
 - Public product/barcode databases have incomplete coverage, especially non-food products and store-specific products.
